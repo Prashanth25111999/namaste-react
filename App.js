@@ -3,7 +3,8 @@
         <h1></h1>
     </div>
 </div> */}
-
+import React from "react";
+import ReactDOM from "react-dom/client"
 const parent = React.createElement("div", { id: "parent" },
     React.createElement("div", { id: "child" },
         React.createElement("h2", { id: "heading" }, "Hello From React!"), React.createElement("h3", { id: "heading" }, "Hello From React2!")), React.createElement("div", { id: "child" },

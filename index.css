@@ -42,11 +42,15 @@ cursor: pointer;
 background-color: rgb(235, 231, 231);
 
 }
-.body-cont{
-display: flex;
-flex-wrap: wrap;
-}
 .card-cont:hover {
     transform: scale(.99); 
 }
-
+.res-cont{
+    display: flex;
+    flex-wrap: wrap;
+}
+.res-btn{
+    margin: 14px;
+    padding: 4px;
+    cursor: pointer;
+}

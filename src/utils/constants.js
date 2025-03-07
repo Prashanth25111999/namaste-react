@@ -1,1 +1,2 @@
 export const logo = "https://th.bing.com/th/id/OIP.eyFnutyvj4Pu_a5YsSfvfQHaEp?w=291&h=183&c=7&r=0&o=5&dpr=1.4&pid=1.7";
+export const SWIGGY_RESTO_API = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.9615398&lng=79.2961468&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";

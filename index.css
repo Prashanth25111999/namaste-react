@@ -1,7 +1,6 @@
 body{
     margin: 0px;
 }
-
 .head-cont{
     display: flex;
     justify-content: space-between;
@@ -35,7 +34,7 @@ padding-right: 30px;
 .card-cont{
 border: 1px solid black;
 width: 170px;
-height: 370px;
+height: 365px;
 padding: 4px;
 margin: 14px;
 cursor: pointer;
@@ -53,4 +52,27 @@ background-color: rgb(235, 231, 231);
     margin: 14px;
     padding: 4px;
     cursor: pointer;
+}
+.shimmer-card{
+    width: 170px;
+    height: 320px;
+    background-color: #f0f0f0;
+    border: 1px solid black;
+    margin: 14px;
+}
+.shimmer-cont{
+    display: flex;
+    flex-wrap: wrap;
+}
+.log-btn{
+    padding: 0 10px;
+    cursor: pointer;
+}
+.search-text{
+    padding: 4px;
+    margin-left: 14px;
+}
+.res-search{
+    padding: 4px;
+    margin-left: 2px;
 }

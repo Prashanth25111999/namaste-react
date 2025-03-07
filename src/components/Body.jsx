@@ -1,25 +1,82 @@
 import RestaurantCard from "./RestaurantCard";
-import { data } from "../utils/mockData";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Shimmer from "./Shimmer";
+import { SWIGGY_RESTO_API } from "../utils/constants";
 
 const Body = () => {
-  const [restData, setResData] = useState(data);
+  const [restData, setResData] = useState([]);
+  const [originaldata, setOriginalData] = useState([]);
+  const [toprated, setTopRated] = useState(false);
+  const [searchtext, setSearchText] = useState("");
 
-  const handleTopResto = () => {
-    const fildata = data.filter((res) => res.card.card.info.avgRating > 4.4);
-    setResData(fildata);
+  const fetchData = async () => {
+    const response = await fetch(SWIGGY_RESTO_API);
+    const json = await response.json();
+    const Restaruant =
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants;
+    setResData(Restaruant);
+    setOriginalData(Restaruant);
   };
-  return (
+  const handleTopResto = () => {
+    const fildata = originaldata.filter((res) => res.info.avgRating > 4);
+    setResData(fildata);
+    setTopRated(true);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  return originaldata?.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className="body-cont">
       <div className="search-cont">
-        <button className="res-btn" onClick={handleTopResto}>
-          Top Rated Restaurant
+        <input
+          type="text"
+          placeholder="Search Restaurants..."
+          className="search-text"
+          value={searchtext}
+          onChange={(e) => {
+            setSearchText(e.target.value);
+          }}
+        />
+        <button
+          className="res-search"
+          onClick={() => {
+            const searchData = originaldata.filter((res) => {
+              return res.info.name
+                .toLowerCase()
+                .includes(searchtext.toLowerCase());
+            });
+            setResData(searchData);
+          }}
+        >
+          Search
+        </button>
+        <button
+          className="res-btn"
+          onClick={handleTopResto}
+          disabled={toprated}
+        >
+          Click For Top Rated Restaurant
+        </button>
+        <button
+          className="res-btn"
+          onClick={() => {
+            setResData(originaldata);
+            setTopRated(false);
+          }}
+          disabled={!toprated}
+        >
+          Click For All Restaurant
         </button>
       </div>
       <div className="res-cont">
         {" "}
-        {restData.map((item, index) => {
-          return <RestaurantCard key={index} resData={item} />;
+        {restData?.map((item, index) => {
+          return <RestaurantCard key={item.info.id} resData={item} />;
         })}
       </div>
     </div>

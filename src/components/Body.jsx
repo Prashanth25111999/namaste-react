@@ -1,7 +1,7 @@
 import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
-import { SWIGGY_RESTO_API } from "../utils/constants";
+import { NEW_SWIGGY_RESTO_API } from "../utils/constants";
 import { Link } from "react-router-dom";
 
 const Body = () => {
@@ -11,7 +11,7 @@ const Body = () => {
   const [searchtext, setSearchText] = useState("");
 
   const fetchData = async () => {
-    const response = await fetch(SWIGGY_RESTO_API);
+    const response = await fetch(NEW_SWIGGY_RESTO_API);
     const json = await response.json();
     const Restaruant =
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
@@ -20,7 +20,7 @@ const Body = () => {
     setOriginalData(Restaruant);
   };
   const handleTopResto = () => {
-    const fildata = originaldata.filter((res) => res.info.avgRating > 4);
+    const fildata = originaldata?.filter((res) => res.info.avgRating > 4);
     setResData(fildata);
     setTopRated(true);
   };
@@ -46,7 +46,7 @@ const Body = () => {
         <button
           className="res-search"
           onClick={() => {
-            const searchData = originaldata.filter((res) => {
+            const searchData = originaldata?.filter((res) => {
               return res.info.name
                 .toLowerCase()
                 .includes(searchtext.toLowerCase());

@@ -48,3 +48,36 @@ const appRoute = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<RouterProvider router={appRoute} />)
+
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import Header from "./components/Header";
+// import Body from "./components/Body";
+// import About from "./components/About";
+// import Contact from "./components/Contact";
+// import ErrorRoute from "./components/ErrorRoute";
+// import RestaurantMenu from "./components/RestaurantMenu";
+
+// const AppLayout = () => {
+//     return (
+//         <>
+//             <Header />
+
+//             <Routes>
+//                 <Route path="/" element={<Body />} />
+//                 <Route path="/about" element={<About />} />
+//                 <Route path="/contact" element={<Contact />} />
+//                 <Route path="/restaurantMenu/:resId" element={<RestaurantMenu />} />
+//                 <Route path="*" element={<ErrorRoute />} /> {/* Handles unknown routes */}
+//             </Routes>
+//         </>
+//     );
+// };
+
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+// root.render(
+//     <Router>
+//         <AppLayout />
+//     </Router>
+// );

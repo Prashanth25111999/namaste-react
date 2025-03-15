@@ -98,3 +98,6 @@ background-color: rgb(235, 231, 231);
   .submenu-cont{
     padding: 30px;
   }
+  .user-compo{
+    border: 1px solid black;
+  }

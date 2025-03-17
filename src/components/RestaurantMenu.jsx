@@ -1,25 +1,19 @@
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const RestaurantMenu = () => {
-  const [resMenu, setResMenu] = useState(null);
   const [checkbox, setCheckbox] = useState(false);
   const { resId } = useParams();
 
-  const fetchMenu = async () => {
-    const response = await fetch(
-      "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9966024&lng=77.6687231&restaurantId=" +
-        resId +
-        "&catalog_qa=undefined&submitAction=ENTER"
-    );
-    const json = await response.json();
-    setResMenu(json?.data);
-  };
+  const resMenu = useRestaurantMenu(resId);
+  const networkStatus = useOnlineStatus();
 
-  useEffect(() => {
-    fetchMenu();
-  }, []);
+  if (networkStatus === false) {
+    return <h1>Please Check Your Internet Connection...!</h1>;
+  }
 
   if (resMenu === null) {
     return <Shimmer />;

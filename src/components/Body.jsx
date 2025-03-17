@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { NEW_SWIGGY_RESTO_API } from "../utils/constants";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   const [restData, setResData] = useState([]);
@@ -20,7 +21,7 @@ const Body = () => {
     setOriginalData(Restaruant);
   };
   const handleTopResto = () => {
-    const fildata = originaldata?.filter((res) => res.info.avgRating > 4);
+    const fildata = originaldata?.filter((res) => res.info.avgRating > 4.2);
     setResData(fildata);
     setTopRated(true);
   };
@@ -28,6 +29,12 @@ const Body = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const networkStatus = useOnlineStatus();
+
+  if (networkStatus === false) {
+    return <h1>Please Check Your Internet Connection...!</h1>;
+  }
 
   return originaldata?.length === 0 ? (
     <Shimmer />

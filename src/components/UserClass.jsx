@@ -28,15 +28,15 @@ class UserClass extends React.Component {
     const { avatar_url, name, location, email } = this.state.gitData;
 
     return (
-      <div className="user-compo">
+      <div className="border-1 p-4 w-[240px] rounded-lg">
         <img
           src={avatar_url}
           alt="Avtar"
           style={{ width: "200px", height: "200px" }}
         />
-        <h2>Name - {name}</h2>
+        <h2 className="font-bold">Name - {name}</h2>
         <h3>Location - {location}</h3>
-        <h4>Contact - {email}</h4>
+        <h4>Contact - {email ? email : "No Email"}</h4>
       </div>
     );
   }

@@ -39,19 +39,19 @@ const Body = () => {
   return originaldata?.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body-cont">
-      <div className="search-cont">
+    <div className="my-3 pt-16">
+      <div className="my-4">
         <input
           type="text"
           placeholder="Search Restaurants..."
-          className="search-text"
+          className="border-1 rounded-md mx-4 p-1"
           value={searchtext}
           onChange={(e) => {
             setSearchText(e.target.value);
           }}
         />
         <button
-          className="res-search"
+          className="bg-green-100 px-2 rounded-md mr-2.5 hover:cursor-pointer"
           onClick={() => {
             const searchData = originaldata?.filter((res) => {
               return res.info.name
@@ -64,14 +64,14 @@ const Body = () => {
           Search
         </button>
         <button
-          className="res-btn"
+          className="border-1 rounded-md mx-2 px-2 hover:cursor-pointer bg-blue-100"
           onClick={handleTopResto}
           disabled={toprated}
         >
           Click For Top Rated Restaurant
         </button>
         <button
-          className="res-btn"
+          className="border-1 rounded-md mx-2 px-2 hover:cursor-pointer  bg-blue-100"
           onClick={() => {
             setResData(originaldata);
             setTopRated(false);
@@ -81,7 +81,7 @@ const Body = () => {
           Click For All Restaurant
         </button>
       </div>
-      <div className="res-cont">
+      <div className="flex flex-wrap gap-5 mx-4">
         {" "}
         {restData?.map((item) => {
           return (

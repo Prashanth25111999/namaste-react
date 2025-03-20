@@ -1,4 +1,4 @@
-body{
+/* body{
     margin: 0px;
 }
 .head-cont{
@@ -100,4 +100,6 @@ background-color: rgb(235, 231, 231);
   }
   .user-compo{
     border: 1px solid black;
-  }
+  } */
+
+  @import "tailwindcss";

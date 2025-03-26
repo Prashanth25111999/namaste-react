@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useContext } from "react";
 import { logo } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import userContext from "../utils/userContext";
 
 const Header = () => {
   const [btn, setBtn] = useState("Login");
@@ -9,6 +10,8 @@ const Header = () => {
     setBtn(btn === "Login" ? "Logout" : "Login");
   };
   const useStatus = useOnlineStatus();
+  const user = useContext(userContext);
+  console.log(user);
 
   return (
     <div className="bg-amber-50 flex justify-between h-19 border-1  fixed top-0 left-0 w-full z-50 shadow-md">
@@ -36,12 +39,15 @@ const Header = () => {
             </Link>
           </li>
           <li className="mx-4 font-semibold">Cart</li>
-          <button
+          <li className="mx-4 font-semibold text-red-300">
+            {user.loggedInUser}👤
+          </li>
+          {/* <button
             className="mx-4 font-semibold border-1 rounded-md px-2.5 hover:cursor-pointer  bg-blue-200"
             onClick={handleLog}
           >
             {btn}
-          </button>
+          </button> */}
         </ul>
       </div>
     </div>

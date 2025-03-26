@@ -13,8 +13,6 @@ class UserClass extends React.Component {
     console.log(this.props.name + "Constructor Called");
   }
   async componentDidMount() {
-    // console.log(this.props.name + " componentDidMount");
-
     const data = await fetch(" https://api.github.com/users/octocat");
     const json = await data.json();
     console.log(json);

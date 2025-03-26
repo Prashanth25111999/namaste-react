@@ -1,9 +1,10 @@
-import RestaurantCard from "./RestaurantCard";
-import { useEffect, useState } from "react";
+import RestaurantCard, { withLablePromoter } from "./RestaurantCard";
+import { useContext, useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { NEW_SWIGGY_RESTO_API } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import userContext from "../utils/userContext";
 
 const Body = () => {
   const [restData, setResData] = useState([]);
@@ -30,12 +31,20 @@ const Body = () => {
     fetchData();
   }, []);
 
+  const RestaurantCardPromoted = withLablePromoter(RestaurantCard);
+
   const networkStatus = useOnlineStatus();
 
-  if (networkStatus === false) {
-    return <h1>Please Check Your Internet Connection...!</h1>;
-  }
+  const user = useContext(userContext);
 
+  if (networkStatus === false) {
+    return (
+      <h1 className="pt-[70px] my-3 font-bold ">
+        Please Check Your Internet Connection...! 😎
+      </h1>
+    );
+  }
+  console.log(restData);
   return originaldata?.length === 0 ? (
     <Shimmer />
   ) : (
@@ -54,8 +63,8 @@ const Body = () => {
           className="bg-green-100 px-2 rounded-md mr-2.5 hover:cursor-pointer"
           onClick={() => {
             const searchData = originaldata?.filter((res) => {
-              return res.info.name
-                .toLowerCase()
+              return res?.info?.name
+                ?.toLowerCase()
                 .includes(searchtext.toLowerCase());
             });
             setResData(searchData);
@@ -80,17 +89,26 @@ const Body = () => {
         >
           Click For All Restaurant
         </button>
+        User Name :{" "}
+        <input
+          value={user.loggedInUser}
+          className="border border-black px-2"
+          onChange={(e) => user.setUserName(e.target.value)}
+        />
       </div>
       <div className="flex flex-wrap gap-5 mx-4">
-        {" "}
         {restData?.map((item) => {
           return (
             <Link
-              to={"/restaurantMenu/" + item.info.id}
-              key={item.info.id}
+              to={"/restaurantMenu/" + item?.info?.id}
+              key={item?.info?.id}
               className="no-link-style"
             >
-              <RestaurantCard resId={item.info.id} resData={item} />
+              {!item?.info?.isOpen ? (
+                <RestaurantCardPromoted resId={item?.info?.id} resData={item} />
+              ) : (
+                <RestaurantCard resId={item?.info?.id} resData={item} />
+              )}
             </Link>
           );
         })}

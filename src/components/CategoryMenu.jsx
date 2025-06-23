@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addItems } from "../store/slice/cartSlice";
 
 const CategoryMenu = ({ CategoryItem }) => {
   const CatMenus = CategoryItem?.card?.card?.itemCards;
   console.log(CatMenus);
+  const dispatch = useDispatch();
+  const handleAdditems = (menus) => {
+    dispatch(addItems(menus));
+  };
 
   return (
     <div className=" bg-blue-50">
@@ -27,8 +32,11 @@ const CategoryMenu = ({ CategoryItem }) => {
               className="h-20 w-35 rounded"
               src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${menus?.card?.info?.imageId}`}
             />
-            <button className="bg-white font-semibold text-green-700 px-6 rounded mx-6 hover:cursor-pointer mt-0 border-1  border-gray-300">
-              ADD
+            <button
+              onClick={() => handleAdditems(menus)}
+              className="bg-white font-semibold text-green-700 px-6 rounded mx-6 hover:cursor-pointer mt-0 border-1  border-gray-300"
+            >
+              ADD+
             </button>
           </div>
         </div>

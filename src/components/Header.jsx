@@ -3,6 +3,7 @@ import { logo } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import userContext from "../utils/userContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [btn, setBtn] = useState("Login");
@@ -12,6 +13,7 @@ const Header = () => {
   const useStatus = useOnlineStatus();
   const user = useContext(userContext);
   console.log(user);
+  const cartData = useSelector((store) => store.cart.items);
 
   return (
     <div className="bg-amber-50 flex justify-between h-19 border-1  fixed top-0 left-0 w-full z-50 shadow-md">
@@ -38,7 +40,11 @@ const Header = () => {
               Contact Us
             </Link>
           </li>
-          <li className="mx-4 font-semibold">Cart</li>
+          <li className="mx-4 font-semibold">
+            <Link className="route-links" to="/cart">
+              ({cartData.length})Cart🛒
+            </Link>
+          </li>
           <li className="mx-4 font-semibold text-red-300">
             {user.loggedInUser}👤
           </li>

@@ -3,8 +3,8 @@ import { useContext, useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { NEW_SWIGGY_RESTO_API } from "../utils/constants";
 import { Link } from "react-router-dom";
-import useOnlineStatus from "../utils/useOnlineStatus";
 import userContext from "../utils/userContext";
+import useOnlineStatus from "use-online-status-hook";
 
 const Body = () => {
   const [restData, setResData] = useState([]);
@@ -33,9 +33,9 @@ const Body = () => {
 
   const RestaurantCardPromoted = withLablePromoter(RestaurantCard);
 
-  const networkStatus = useOnlineStatus();
-
   const user = useContext(userContext);
+
+  const networkStatus = useOnlineStatus();
 
   if (networkStatus === false) {
     return (
@@ -44,7 +44,7 @@ const Body = () => {
       </h1>
     );
   }
-  console.log(restData);
+
   return originaldata?.length === 0 ? (
     <Shimmer />
   ) : (

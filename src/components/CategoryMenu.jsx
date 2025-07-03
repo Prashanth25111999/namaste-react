@@ -33,6 +33,7 @@ const CategoryMenu = ({ CategoryItem }) => {
               src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${menus?.card?.info?.imageId}`}
             />
             <button
+              data-testid="btnofadd"
               onClick={() => handleAdditems(menus)}
               className="bg-white font-semibold text-green-700 px-6 rounded mx-6 hover:cursor-pointer mt-0 border-1  border-gray-300"
             >

@@ -4,9 +4,13 @@ import userContext from "../utils/userContext";
 function RestaurantCard({ resData }) {
   const { name, avgRating, costForTwo, cuisines } = resData?.info;
   const user = useContext(userContext);
+  // console.log(resData);
 
   return (
-    <div className="w-[230px] border-1 p-2 bg-gray-50 rounded-lg h-[387px] hover:scale-102 transition-transform ">
+    <div
+      data-testid="resCard"
+      className="w-[230px] border-1 p-2 bg-gray-50 rounded-lg h-[387px] hover:scale-102 transition-transform "
+    >
       <img
         src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${resData?.info?.cloudinaryImageId}`}
         alt="Resto Image"

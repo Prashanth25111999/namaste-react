@@ -42,18 +42,18 @@ const Header = () => {
           </li>
           <li className="mx-4 font-semibold">
             <Link className="route-links" to="/cart">
-              ({cartData.length})Cart🛒
+              ({cartData.length})Cart
             </Link>
           </li>
           <li className="mx-4 font-semibold text-red-300">
             {user.loggedInUser}👤
           </li>
-          {/* <button
+          <button
             className="mx-4 font-semibold border-1 rounded-md px-2.5 hover:cursor-pointer  bg-blue-200"
             onClick={handleLog}
           >
             {btn}
-          </button> */}
+          </button>
         </ul>
       </div>
     </div>

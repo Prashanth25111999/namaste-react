@@ -4,7 +4,8 @@ import Shimmer from "./Shimmer";
 import { NEW_SWIGGY_RESTO_API } from "../utils/constants";
 import { Link } from "react-router-dom";
 import userContext from "../utils/userContext";
-import useOnlineStatus from "use-online-status-hook";
+//import useOnlineStatus from "use-online-status-hook";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   const [restData, setResData] = useState([]);
@@ -52,6 +53,7 @@ const Body = () => {
       <div className="my-4">
         <input
           type="text"
+          data-testid="searchinput"
           placeholder="Search Restaurants..."
           className="border-1 rounded-md mx-4 p-1"
           value={searchtext}
